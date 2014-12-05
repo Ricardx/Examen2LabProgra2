@@ -18,7 +18,7 @@ public class PersonajeAnimado extends Actor
 	float frame;
 	float velocidad_animacion;
 	int piso;
-	
+
 	public PersonajeAnimado(ArrayList<Image>images)
 	{
 		super();
@@ -49,9 +49,8 @@ public class PersonajeAnimado extends Actor
 		velocidad_x+=aceleracion_x;
 		velocidad_y+=aceleracion_y;
 		moveBy(velocidad_x*delta, velocidad_y*delta);
-		if(getY()<=piso){
+		if(getY()<=piso)
 			setY(piso);
-		}
 	}
 	
 	@Override
@@ -61,7 +60,8 @@ public class PersonajeAnimado extends Actor
 		images.get(dibujo_actual).draw(batch, parentAlpha);
 	}
 	
-	boolean colision(PersonajeAnimado otro_personaje){
+	boolean colision(PersonajeAnimado otro_personaje)
+	{
 		Rectangle r1 = new Rectangle(getX()+getWidth()/4,
 							getY()+getHeight()/4, 
 							getWidth()/2,

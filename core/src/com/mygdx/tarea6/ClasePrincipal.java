@@ -27,13 +27,13 @@ public class ClasePrincipal extends Game implements InputProcessor{
 		Gdx.input.setInputProcessor(this);
 
 		batch = new SpriteBatch();
-		img = new Texture("FondoMenu.png");
+//		img = new Texture("FondoMenu.png");
 		jugador = new Jugador();		
 		plat = new Plataforma();		
-		stage.addActor(jugador);
-		stage.addActor(plat); 
-		stage.addActor(new Enemigo(jugador));
-		stage.addActor(new Plataforma());
+//		stage.addActor(jugador);
+//		stage.addActor(plat); 
+//		stage.addActor(new Enemigo(jugador));
+//		stage.addActor(new Plataforma());
 
 		screenMenu = new MainMenu(this);
 		screendos = new screen2(this);
@@ -74,7 +74,7 @@ public class ClasePrincipal extends Game implements InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		jugador.saltar();
+		jugador.saltar1();
 		return false;
 	}
 

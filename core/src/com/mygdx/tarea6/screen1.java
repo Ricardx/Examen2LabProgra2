@@ -11,6 +11,8 @@ public class screen1 extends MainMenu {
 	Plataforma plat;
 	Enemigo enem1;
 	Enemigo2 enem2;
+	int frame;
+	int frame1;
 
 	public screen1(ClasePrincipal game) {
 		super(game);
@@ -21,9 +23,7 @@ public class screen1 extends MainMenu {
 		jugador = new Jugador();		
 		plat = new Plataforma();		
 		stage.addActor(jugador);
-		stage.addActor(plat); 
-		stage.addActor(new Enemigo(jugador));
-		stage.addActor(new Enemigo2(jugador));
+		stage.addActor(plat);
 		stage.addActor(new Plataforma());
 		
 		
@@ -35,6 +35,24 @@ public class screen1 extends MainMenu {
 		super.show();
 	}
 	
+
+	void nuevoenemigo(){
+		Enemigo enem = new Enemigo(jugador);
+		Enemigo2 fant = new Enemigo2(jugador);
+		stage.addActor(enem);
+		enem.setX(630);
+		stage.addActor(fant);
+		fant.setX(630);
+	    
+					
+
+	}
+	void nuevaplat(){
+		Plataforma scr = new Plataforma();
+		stage.addActor(scr);
+		scr.setX(100);
+	}
+	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -42,6 +60,16 @@ public class screen1 extends MainMenu {
 		
 		stage.draw();
 		stage.act();
+		
+		if(frame %150 ==0)
+			nuevoenemigo();
+		frame++;
+		
+		
+		if(frame1%400==0)
+			nuevaplat();
+		 frame1++;
+		
 		
 //		batch.begin();		
 //		if(Gdx.input.isTouched())

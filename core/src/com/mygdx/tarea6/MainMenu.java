@@ -13,32 +13,40 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class MainMenu implements Screen{
+public class MainMenu implements Screen,InputProcessor{
 	Stage stage;
 	Sprite fondo;
 	Sprite instrucciones;
 	Sprite salir;
 	Sprite jugar;
+	Sprite estre;
 	ClasePrincipal game;
 	SpriteBatch batch;
 	Jugador jugador;
 	Plataforma plat;
 	boolean lock = false;
 	ArrayList<Image> images;
+	ArrayList<Image> images2;
 	int frame = 0;
 	int dibujo_actual=0;
+	int dibujo_actual2=0;
 	float tiempo_act=0;
 	Music music;
 	Music music2;
-
+	Estrellita e; 
+	Stage stage2;
+	
 	public MainMenu(ClasePrincipal game) {
 		stage = new Stage();
+		stage2 = new Stage();
 		this.game = game;
 		batch = game.batch;
 		jugador = new Jugador();
+		e = new Estrellita(jugador);
 		plat = new Plataforma();
 		stage.addActor(jugador);
 		stage.addActor(plat);
+	    stage2.addActor(e);
 		fondo = new Sprite(new Texture("FondoMenu.png"));
 		instrucciones = new Sprite(new Texture("instrucciones.png"));
 		jugar = new Sprite(new Texture("jugar.png"));
@@ -47,25 +55,44 @@ public class MainMenu implements Screen{
 		music2 = Gdx.audio.newMusic(Gdx.files.internal("Button3.mp3"));
 
 		images = new ArrayList<Image>();
-		images.add(new Image(new Texture("FondoMenu.png")));
-		images.add(new Image(new Texture("FondoMen1.png")));
-		images.add(new Image(new Texture("FondoMen2.png")));
-		images.add(new Image(new Texture("FondoMen3.png")));
-		images.add(new Image(new Texture("FondoMen4.png")));
-		images.add(new Image(new Texture("FondoMen5.png")));
+//		images.add(new Image(new Texture("FondoMenu.png")));
+//		images.add(new Image(new Texture("FondoMen1.png")));
+//		images.add(new Image(new Texture("FondoMen2.png")));
+//		images.add(new Image(new Texture("FondoMen3.png")));
+//		images.add(new Image(new Texture("FondoMen4.png")));
+//		images.add(new Image(new Texture("FondoMen5.png")));	
 		
-		instrucciones.setX(180);
+		
+		images2 = new ArrayList<Image>();
+		images2.add(new Image(new Texture("RN1.png")));
+		images2.add(new Image(new Texture("RN2.png")));
+		images2.add(new Image(new Texture("RN3.png")));
+		images2.add(new Image(new Texture("RN4.png")));
+		images2.add(new Image(new Texture("RN5.png")));
+		images2.add(new Image(new Texture("RN6.png")));
+		images2.add(new Image(new Texture("RN7.png")));
+		images2.add(new Image(new Texture("RN8.png")));
+		images2.add(new Image(new Texture("RN9.png")));
+		images2.add(new Image(new Texture("RN10.png")));
+		images2.add(new Image(new Texture("RN11.png")));
+		images2.add(new Image(new Texture("RN12.png")));
+		images2.add(new Image(new Texture("RN1.png")));
+		images2.add(new Image(new Texture("RN12.png")));
+		images2.add(new Image(new Texture("RN1.png")));
+		
+		instrucciones.setX(50);
 		instrucciones.setY(150);
-		jugar.setX(260);
-		jugar.setY(220);
-		salir.setX(170);
-		salir.setY(80);
+		jugar.setX(200);
+		jugar.setY(270);
+		salir.setX(350);
+		salir.setY(150);
 
 	}
+	
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(1, 1, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
@@ -75,13 +102,24 @@ public class MainMenu implements Screen{
 		tiempo_act+=delta;
 		if(tiempo_act>0.4f){
 			dibujo_actual++;
+			dibujo_actual2++;
 			tiempo_act=0;
 		}
 		if(dibujo_actual >= images.size()){
 			dibujo_actual=0;
-//			images.get(dibujo_actual).draw(batch, dibujo_actual);
+			
 		}
-		images.get(dibujo_actual).draw(batch, dibujo_actual);
+		if(dibujo_actual2 >= images2.size()){
+			dibujo_actual2=0;
+		}
+		
+		images2.get(dibujo_actual2).setX(200);	
+		images2.get(dibujo_actual2).setY(380);	
+//		images.get(dibujo_actual).draw(batch, dibujo_actual);
+		images2.get(dibujo_actual2).draw(batch, dibujo_actual2);
+		
+		
+		
 //		fondo.draw(batch);
 		instrucciones.draw(batch);
 		jugar.draw(batch);
@@ -107,6 +145,7 @@ public class MainMenu implements Screen{
 				if (area_instrucciones){					
 					game.setScreen(game.screendos);
 					music.play();
+					// Audio "FREE" Sacado de esta pagina: http://www.flashkit.com/soundfx/
 				}
 
 			}
@@ -131,6 +170,7 @@ public class MainMenu implements Screen{
 				if (area_jugar){
 					game.setScreen(game.screenuno);
 					music2.play();
+					// Audio "FREE" Sacado de esta pagina: http://www.flashkit.com/soundfx/
 				}
 //			}
 //		} else{
@@ -160,14 +200,17 @@ public class MainMenu implements Screen{
 		}
 		
 		
+//		stage2.draw();
+//		stage2.act();
 		
 		batch.end();
-//		stage.draw();
-//		stage.act();
+		stage.draw();
+		stage.act();
 
 		// System.exit(0);
 
 }
+
 
 
 	@Override
@@ -204,6 +247,62 @@ public class MainMenu implements Screen{
 	public void dispose() {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		jugador.saltar1();
+		return false;
+	}
+
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

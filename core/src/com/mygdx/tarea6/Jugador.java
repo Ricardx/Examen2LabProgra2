@@ -7,11 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
 public class Jugador extends PersonajeAnimado{
-	float gravedad;
 	
+	float gravedad;
 	public Jugador() {
 		super(loadImages());
-		gravedad=200f;
 	}
 	
 	static ArrayList<Image> loadImages()
@@ -28,16 +27,20 @@ public class Jugador extends PersonajeAnimado{
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		aceleracion_y-=gravedad*delta;
-		if(getY()<=piso)
-		{
+		aceleracion_y*=delta;
+		if(getY()<=piso){
 			velocidad_y=0;
 			aceleracion_y=0;
-		}
 	}
 	
-	void saltar(){
-		if(getY()==piso)
-			aceleracion_y=60f;
-	}
+	
 }
+
+	void saltar1(){
+		
+			aceleracion_y=0;
+			System.out.println("salta");
+		
+	}
+	
+	}
