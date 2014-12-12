@@ -19,7 +19,6 @@ public class MainMenu implements Screen,InputProcessor{
 	Sprite instrucciones;
 	Sprite salir;
 	Sprite jugar;
-	Sprite estre;
 	ClasePrincipal game;
 	SpriteBatch batch;
 	Jugador jugador;
@@ -40,6 +39,7 @@ public class MainMenu implements Screen,InputProcessor{
 		stage = new Stage();
 		stage2 = new Stage();
 		this.game = game;
+		Gdx.input.setInputProcessor(this);
 		batch = game.batch;
 		jugador = new Jugador();
 		e = new Estrellita(jugador);
@@ -86,6 +86,7 @@ public class MainMenu implements Screen,InputProcessor{
 		jugar.setY(270);
 		salir.setX(350);
 		salir.setY(150);
+		
 
 	}
 	
@@ -118,9 +119,6 @@ public class MainMenu implements Screen,InputProcessor{
 //		images.get(dibujo_actual).draw(batch, dibujo_actual);
 		images2.get(dibujo_actual2).draw(batch, dibujo_actual2);
 		
-		
-		
-//		fondo.draw(batch);
 		instrucciones.draw(batch);
 		jugar.draw(batch);
 		salir.draw(batch);
@@ -168,7 +166,8 @@ public class MainMenu implements Screen,InputProcessor{
 				System.out.println("Coordenada Y de jugar "	+ jugar.getY());
 				System.out.println();
 				if (area_jugar){
-					game.setScreen(game.screenuno);
+//					System.exit(0);
+					game.setScreen(game.screentres);
 					music2.play();
 					// Audio "FREE" Sacado de esta pagina: http://www.flashkit.com/soundfx/
 				}
@@ -200,6 +199,11 @@ public class MainMenu implements Screen,InputProcessor{
 		}
 		
 		
+		
+		
+		
+		
+		
 //		stage2.draw();
 //		stage2.act();
 		
@@ -207,7 +211,6 @@ public class MainMenu implements Screen,InputProcessor{
 		stage.draw();
 		stage.act();
 
-		// System.exit(0);
 
 }
 

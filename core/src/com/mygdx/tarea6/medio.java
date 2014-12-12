@@ -1,12 +1,13 @@
 package com.mygdx.tarea6;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 
-public class screen1 extends MainMenu {
+public class medio extends MainMenu {
 	Stage stage, stage2;
 	Jugador jugador;
 	Plataforma plat;
@@ -14,12 +15,11 @@ public class screen1 extends MainMenu {
 	Enemigo2 enem2;
 	int frame;
 	int frame1;
+	Music music;
 
-	public screen1(ClasePrincipal game) {
+	public medio(ClasePrincipal game) {
 		super(game);
 		Gdx.input.setInputProcessor(this);
-		Texture asd = new Texture("instruclist.png");
-		fondo.setTexture(asd);		
 		stage = new Stage();
 		stage2 = new Stage();
 		jugador = new Jugador();		
@@ -29,15 +29,16 @@ public class screen1 extends MainMenu {
 		stage.addActor(new Plataforma());
 		Nombre nom = new Nombre();
 		stage.addActor(nom);
+		music = Gdx.audio.newMusic(Gdx.files.internal("06 Searching.mp3"));
 		
 		
 	}
-//	
-//	@Override
-//	public void show() {
-//		// TODO Auto-generated method stub
-//		super.show();
-//	}
+	
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		super.show();
+	}
 	
 
 	void nuevoenemigo(){
@@ -64,9 +65,10 @@ public class screen1 extends MainMenu {
 		stage.act();
 		stage2.draw();
 		stage2.act();
+		music.play();
+//		Music by erik Stiff
 		
-		
-		if(frame %200 ==0)
+		if(frame %150 ==0)
 			nuevoenemigo();
 		frame++;
 		

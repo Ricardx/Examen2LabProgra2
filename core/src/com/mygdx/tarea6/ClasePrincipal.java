@@ -20,6 +20,10 @@ public class ClasePrincipal extends Game implements InputProcessor{
 	MainMenu screenMenu;
 	screen2 screendos;
 	screen1 screenuno;
+	screen3 screentres;
+	facil fa;
+	medio med;
+	dificil dif;
 	
 	@Override
 	public void create () {		
@@ -27,7 +31,7 @@ public class ClasePrincipal extends Game implements InputProcessor{
 		Gdx.input.setInputProcessor(this);
 
 		batch = new SpriteBatch();
-//		img = new Texture("FondoMenu.png");
+
 		jugador = new Jugador();		
 		plat = new Plataforma();		
 //		stage.addActor(jugador);
@@ -38,13 +42,17 @@ public class ClasePrincipal extends Game implements InputProcessor{
 		screenMenu = new MainMenu(this);
 		screendos = new screen2(this);
 		screenuno = new screen1(this);
+		screentres = new screen3(this);
+		fa = new facil(this);
+		med = new medio(this);
+		dif = new dificil(this);
 		setScreen(screenMenu);
 		
 	}
 	
 
 	void nuevoenemigo(){
-		Enemigo enem = new Enemigo(jugador);
+		Enemigo enem = new Enemigo(jugador, null);
 		Enemigo2 fant = new Enemigo2(jugador);
 		stage.addActor(enem);
 		enem.setX(500);

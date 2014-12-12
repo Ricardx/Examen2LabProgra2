@@ -9,8 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class Jugador extends PersonajeAnimado{
 	
 	float gravedad;
+	float velocidad_x=1f;
+	float velocidad_y = 1f;
+	float aceleracion_x;
+	float aceleracion_y=1f;
+	
 	public Jugador() {
 		super(loadImages());
+//		Gdx.input.setInputProcessor((InputProcessor) this);
 	}
 	
 	static ArrayList<Image> loadImages()
@@ -27,7 +33,7 @@ public class Jugador extends PersonajeAnimado{
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		aceleracion_y*=delta;
+		aceleracion_y*=velocidad_x;
 		if(getY()<=piso){
 			velocidad_y=0;
 			aceleracion_y=0;
@@ -37,10 +43,11 @@ public class Jugador extends PersonajeAnimado{
 }
 
 	void saltar1(){
-		
-			aceleracion_y=0;
-			System.out.println("salta");
+		if(this.getY() == 70 || this.getY() <300){
+			System.out.println("salto");
+			aceleracion_y = 1.5f;
+		}
 		
 	}
 	
-	}
+}

@@ -22,10 +22,11 @@ public class PersonajeAnimado extends Actor
 	public PersonajeAnimado(ArrayList<Image>images)
 	{
 		super();
+//		Gdx.input.setInputProcessor((InputProcessor) this);
 		this.images = images;
 		dibujo_actual=0;
 		velocidad_x=0;
-		velocidad_y=0;
+		velocidad_y=1f;
 		aceleracion_x=0;
 		aceleracion_y=0;
 		frame=0;
@@ -46,11 +47,31 @@ public class PersonajeAnimado extends Actor
 				dibujo_actual=0;
 			frame=0;
 		}
+		
 		velocidad_x+=aceleracion_x;
-		velocidad_y+=aceleracion_y;
-		moveBy(velocidad_x*delta, velocidad_y*delta);
-		if(getY()<=piso)
+		velocidad_y+=aceleracion_y;		
+		moveBy(velocidad_x*delta, velocidad_y*delta);		
+		if(getY()<=piso){
 			setY(piso);
+		}
+		
+//		velocidad_y+=aceleracion_y;
+//		this.setY(this.getY()+velocidad_y);
+//		
+//		if(this.getY()<=50){
+//			velocidad_y = 0;
+//			aceleracion_y = 0;
+//			this.setY(50);
+//		}
+//		
+//		//Desplazamiento en Y
+//				velocidad_y+=aceleracion_y;
+//				this.setY(this.getY()+velocidad_y);
+//				
+//				//Gravedad
+//				aceleracion_y-=0.25;
+				
+//				this.setX(this.getX()+3);
 	}
 	
 	@Override
@@ -72,4 +93,15 @@ public class PersonajeAnimado extends Actor
 						otro_personaje.getHeight()/2);
 		return r1.overlaps(r2);
 	}
-}
+	
+	void saltar1(){
+//		if(this.getY() == 70 || this.getY() <300){
+//			System.out.println("salto");
+//			aceleracion_y = 1.5f;
+		
+			System.out.println("Salto");
+			aceleracion_y=2;
+		}
+		
+		
+	}
